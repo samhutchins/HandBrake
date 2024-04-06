@@ -34,7 +34,7 @@ ghb_deps = [
   cc.find_library('handbrake', dirs: hb_libdirs),
   cc.find_library('bz2', kwargs: win_libdirs),
   cc.find_library('m'),
-  cc.find_library('mp3lame', kwargs: win_libdirs),
+  cc.find_library('mp3lame', dirs: hb_libdirs),
   dependency('dvdnav'),
   dependency('dvdread'),
   dependency('dav1d'),
@@ -112,6 +112,10 @@ if host_machine.system() == 'windows'
   endforeach
 elif not cc.has_function('dlopen')
   ghb_deps += cc.find_library('dl')
+endif
+
+if host_machine.system() == 'darwin'
+  ghb_deps += dependency('appleframeworks', modules: ['IOKit', 'CoreServices', 'CoreText', 'CoreGraphics', 'AudioToolbox', 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'Foundation', 'DiskArbitration', 'Metal'])
 endif
 
 if not cc.has_function('iconv')

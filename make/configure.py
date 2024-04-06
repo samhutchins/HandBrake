@@ -1732,7 +1732,7 @@ try:
     arch       = ArchAction(); arch.run()
 
     # set whether features can be enabled
-    gtk_supported   = host_tuple.match( '*-*-linux*', '*-*-mingw*', '*-*-*bsd*' )
+    gtk_supported   = host_tuple.match( '*-*-linux*', '*-*-mingw*', '*-*-*bsd*', '*-*-darwin*' )
     qsv_supported   = host_tuple.match( '*-*-linux*', 'x86_64-w64-mingw32*', '*-*-freebsd*' )
     nvenc_supported = host_tuple.match( '*-*-linux*', 'x86_64-w64-mingw32*' )
     vce_supported   = host_tuple.match( '*-*-linux*', 'x86_64-w64-mingw32*' )
